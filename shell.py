@@ -23,7 +23,7 @@ default_passwords = ["changeme123!"]
 
 
 # each team
-for team in range(1, 14):
+for team in range(1, 17):
 	# each teams servers
 	for server in [1, 2, 3, 4, 5, 6, 11, 12, 13, 20, 21, 22, 42, 69]:
 		# check each default password
