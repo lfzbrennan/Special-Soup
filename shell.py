@@ -4,7 +4,7 @@ import asyncio
 import pexpect
 import threading
 
-async def ssh(user, host, password, timeout=2):
+def ssh(user, host, password, timeout=2):
 	try:                                                                                                                                                                                                                                                                                                         
 
 		ssh_cmd = f'ssh {user}@{host}'                                                                                                              
