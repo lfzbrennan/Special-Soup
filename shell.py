@@ -19,16 +19,7 @@ def ssh(user, host, password, timeout=2):
 		return                                                                                                                                                                                                                                                                                                             
 
 
-
-# fuck around with any command we want
-command = """
-
-"""
-
-default_passwords = []
-
-with open("wordlist.txt") as f:
-	default_passwords = f.readlines()
+default_passwords = ["changeme123!"]
 
 
 # each team
