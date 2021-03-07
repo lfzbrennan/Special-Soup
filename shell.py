@@ -3,18 +3,17 @@ import sys
 import asyncio
 import pexpect
 
-async def ssh(user, host, cmd, password, timeout=2):
+async def ssh(user, host, cmd, password, timeout=1):
 	try:                                                                                                                                                                                                                                    
 		options = '-q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oPubkeyAuthentication=no -f'                                                                         
 
-		ssh_cmd = f'ssh {user}@{host} {options} "{cmd}"'      
-		print(ssh_cmd)                                                                                                         
+		ssh_cmd = f'ssh {user}@{host} {options} "{cmd}"'                                                                                                              
 		child = pexpect.spawn(ssh_cmd, timeout=timeout, encoding="utf-8")   
 		child.log_file = open("list.log", "w")                                                                                                                         
 		child.expect(['password: '])                                                                                                                                                                                                                                                                                               
 		child.sendline(password)                                                                                                                                                                                                                                                                                                     
 		child.expect(pexpect.EOF)   
-		print(child.read())                                                                                                                                               
+		print(f"User: {user}\tHost: {host}: Pwd: {password}")                                                                                                                                               
 		child.close()
 	except:
 		return                                                                                                                                                                                                                                                                                                             
