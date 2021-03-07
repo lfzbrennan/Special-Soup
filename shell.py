@@ -9,11 +9,11 @@ def ssh(user, host, password, timeout=2):
 	try:                                                                                                                                                                                                                                                                                                         
 		ssh_cmd = f'ssh {user}@{host}'                                                                                                              
 		child = pexpect.spawn(ssh_cmd, timeout=timeout, encoding="utf-8")                                                                                                                            
-		child.expect(['password: '])
-		print(f"User: {user}\tHost: {host}: Pwd: {password}")                                                                                                                                                                                                                                                                                               
+		child.expect(['password: '])                                                                                                                                                                                                                                                                                              
 		child.sendline(password)                                                                                                                                                                                                                                                                                                     
 		child.expect(pexpect.EOF)                                                                                                                                                  
 		child.close()
+		print(f"User: {user}\tHost: {host}: Pwd: {password}") 
 	except:
 		return                                                                                                                                                                                                                                                                                                             
 
