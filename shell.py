@@ -26,9 +26,9 @@ users = ["root", "jimmu", "suizei", "annei", "itoku"]
 all_pass = []
 for i in range(len(default_passwords)):
 	for j in range(len(default_passwords)):
-		for k in range(1, 17):
-			one = default_passwords[i]
-			two = default_passwords[j]
+		for k in range(100):
+			one = default_passwords[i].strip("\n")
+			two = default_passwords[j].strip("\n")
 			if k < 10:
 				all_pass += [f"{one.capitalize()}-{two}-0{k}!"]
 				all_pass += [f"{two.capitalize()}-{one}-0{k}!"]
@@ -38,7 +38,7 @@ for i in range(len(default_passwords)):
 				all_pass += [f"{two.capitalize()}-{one}-{k}!"]
 
 print(f"Created passwords: {len(all_pass)}")
-
+print(all_pass[:5])
 
 # each team
 for team in range(1, 17):
