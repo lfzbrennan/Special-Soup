@@ -27,8 +27,8 @@ all_pass = []
 for i in range(len(default_passwords)):
 	for j in range(len(default_passwords)):
 		for k in range(1, 17):
-			one = capitalize(default_passwords[i])
-			two = capitalize(default_passwords[j])
+			one = default_passwords[i].capitalize()
+			two = default_passwords[j].capitalize()
 			if i < 10:
 				all_pass += [f"{one}-{two}-0{k}!"]
 				all_pass += [f"{two}-{one}-0{k}!"]
