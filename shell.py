@@ -37,9 +37,12 @@ for i in range(len(default_passwords)):
 				all_pass += [f"{one.capitalize()}-{two}-{k}!"]
 				all_pass += [f"{two.capitalize()}-{one}-{k}!"]
 
+print(f"Created passwords: {len(all_pass)}")
+
 
 # each team
 for team in range(1, 17):
+	print(f"CHecking for team {team}")
 	# each teams servers
 	for server in [1, 2, 3, 4, 5, 6, 11, 12, 13, 20, 21, 22, 42, 69]:
 		# check each default password
