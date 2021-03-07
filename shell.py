@@ -40,9 +40,11 @@ for i in range(len(default_passwords)):
 				all_pass += [f"{two.capitalize()}-{one}-{k}!"]
 '''
 all_pass ="ILikeTheSt0ck"
+'''
 
 random.shuffle(all_pass)
 print(f"Created passwords: {len(all_pass)}")
+'''
 
 # each team
 for team in range(1, 17):
