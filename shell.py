@@ -3,7 +3,7 @@ import sys
 import asyncio
 import pexpect
 
-async def ssh(user, host, cmd, password, timeout=5):
+async def ssh(user, host, cmd, password, timeout=2):
 	try:                                                                                                                                                                                                                                    
 		options = '-q -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null -oPubkeyAuthentication=no -f'                                                                         
 
