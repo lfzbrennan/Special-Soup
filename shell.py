@@ -39,7 +39,7 @@ for i in range(len(default_passwords)):
 				all_pass += [f"{one.capitalize()}-{two}-{k}!"]
 				all_pass += [f"{two.capitalize()}-{one}-{k}!"]
 '''
-all_pass ="ILikeTheSt0ck"
+all_pass =["ILikeTheSt0ck"]
 '''
 
 random.shuffle(all_pass)
