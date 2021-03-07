@@ -6,7 +6,6 @@ import threading
 
 def ssh(user, host, password, timeout=2):
 	try:                                                                                                                                                                                                                                                                                                         
-		print(user)
 		ssh_cmd = f'ssh {user}@{host}'                                                                                                              
 		child = pexpect.spawn(ssh_cmd, timeout=timeout, encoding="utf-8")                                                                                                                            
 		child.expect(['password: '])
@@ -20,7 +19,7 @@ def ssh(user, host, password, timeout=2):
 
 default_passwords = ["changeme123!"]
 
-users = ["root", "Yuugo.Takagawa"]
+users = ["Yuugo.Takagawa"]
 
 
 # each team
