@@ -13,7 +13,8 @@ async def ssh(user, host, cmd, password, timeout=5):
 		child.log_file = open("list.log", "w")                                                                                                                         
 		child.expect(['password: '])                                                                                                                                                                                                                                                                                               
 		child.sendline(password)                                                                                                                                                                                                                                                                                                     
-		child.expect(pexpect.EOF)                                                                                                                                                  
+		child.expect(pexpect.EOF)   
+		print(child.read())                                                                                                                                               
 		child.close()
 	except:
 		return                                                                                                                                                                                                                                                                                                             
